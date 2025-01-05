@@ -1,0 +1,17 @@
+<div class="p-3">
+  <div>
+    <input style="width: 80%; display: inline" type="text" [(ngModel)]="message" class="form-control">
+    <button class="btn btn-outline-success" (click)="askChatBot()">Ask</button>
+    @if (loading){
+      <div class="spinner-border" role="status" >
+        <span class="sr-only">...</span>
+      </div>
+    }
+  </div>
+  <div class="p-3">
+    @if (response){
+      <markdown [data]="response">
+      </markdown>
+    }
+  </div>
+</div>

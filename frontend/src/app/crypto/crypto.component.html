@@ -1,0 +1,37 @@
+<div class="p-3">
+  <table class="table">
+    <thead class="table-dark text-white">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Unit</th>
+        <th>Emission</th>
+        <th>ConsensusRule</th>
+        <th>Algorithm</th>
+        <th>Protocol</th>
+        <th>Platform</th>
+        <th>Web Site</th>
+        <th>Community</th>
+      </tr>
+
+    </thead>
+    <tbody>
+      @for (hotel of cryptoCurrencies; track hotel){
+        <tr>
+          <td>{{hotel.id}}</td>
+          <td>{{hotel.name}}</td>
+          <td>{{hotel.type}}</td>
+          <td>{{hotel.unit}}</td>
+          <td>{{hotel.emission}}</td>
+          <td>{{hotel.consensusRule}}</td>
+          <td>{{hotel.algorithm}}</td>
+          <td>{{hotel.protocol}}</td>
+          <td>{{hotel.platform}}</td>
+          <td>{{hotel.webSite}}</td>
+          <td>{{hotel.community}}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,42 @@
+services:
+  pgvector:
+    container_name: pgdb
+    image: 'pgvector/pgvector:pg16'
+    environment:
+      - 'POSTGRES_DB=dbCryptoCurrency'
+      - 'POSTGRES_PASSWORD=1234'
+      - 'POSTGRES_USER=admin'
+    networks:
+      - chatbot-net
+    labels:
+      - "org.springframework.boot.service-connection=postgres"
+    volumes:
+      - chatbot_data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+  chatbot-service:
+    container_name: chatbot-service
+    build: ./backend
+    ports:
+      - '8074:8074'
+    environment:
+      - DB_URL=jdbc:postgresql://pgdb:5432/dbCryptoCurrency
+    depends_on:
+      - pgvector
+    networks:
+      - chatbot-net
+  chatbot-ui:
+    build:
+      context: ./frontend
+    container_name: chatbot-ui
+    ports:
+      - '8085:80'
+    depends_on:
+      - chatbot-service
+    networks:
+      - chatbot-net
+networks:
+  chatbot-net:
+    driver: bridge
+volumes:
+  chatbot_data:
